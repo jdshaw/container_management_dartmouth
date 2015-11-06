@@ -11,6 +11,7 @@ body{
     width:55mm;
     height:88mm;
     text-align:center;
+    overflow:hidden;
 }
 .label-records-management-id{
     position:relative;
@@ -23,51 +24,56 @@ body{
     padding:0px;
 }
 .label-location-header{
-    font-size:12px;
+    font-size:18px;
     margin-top:10px;
 }
 .label-location{
+    font-size:20px;
     font-weight:700;
-    font-size:14px;
+    margin:0 auto;
+    width:90%;
 }
 .rm .label-location{
+    font-size:16px;
     height:20px;
     overflow:hidden;
 }
 .label-resource-id{
     font-weight:500;
-    font-size:25px;
+    font-size:27px;
     margin-bottom:0;
 }
 .label-indicator{
     position:relative;
-    width:70%;
+    width:80%;
     font-weight:900;
-    font-size:36px;
+    font-size:45px;
     border-style:solid;
     border-width:2px;
     margin:0 auto;
     padding:0px;
-    line-height:36px;
+    line-height:40px;
 }
 .label-resource-title{
     font-weight:bold;
     font-size:14px;
-    margin:0 auto;
+    margin:5px auto;
     width:90%;
 }
 .label-series-title{
-    font-size:12px;
+    font-size:14px;
     margin:5px auto 0 auto;
     height:auto;
-    max-height:40px;
+    max-height:35px;
+    overflow:hidden;
     width:90%;
 }
 .label-description{
     height:auto;
-    max-height:50px;
-    font-size:12px;
+    max-height:35px;
+    font-size:14px;
     margin:5px;
+    overflow:hidden;
 }
 .label-series-title-rm{
     font-size:12px;
@@ -75,15 +81,17 @@ body{
     height:auto;
     max-height:16px;
     width:90%;
+    overflow:hidden;
 }
 .label-description-rm{
-    height:30px;
+    height:auto;
+    max-height:30px;
     font-size:12px;
     margin:1px auto;
     width:90%;
 }
 .label-date{
-    font-size:12px;
+    font-size:16px;
     height:20px;
 }
 .label-divider{
@@ -102,7 +110,7 @@ body{
 .label-records-management-location{
     border:1px solid;
     background-color:#ccc;
-    font-size:24px;
+    font-size:30px;
     margin:0 auto 2px auto;
     width:90%;
 }
@@ -118,7 +126,17 @@ body{
 }
 @media print{
     .label-sheet-cell{
+        page-break-after:avoid;
+    }
+    .label-sheet-row .label-sheet-cell{
+        page-break-after:always;
+    }
+    .label-sheet-row .chrome-sheet-cell{
+        height:86mm;
         page-break-after:auto;
+    }
+    .last{
+        page-break-after:avoid;
     }
     .box-label{
         border-width:0px;
