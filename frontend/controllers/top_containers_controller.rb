@@ -211,7 +211,23 @@ class TopContainersController < ApplicationController
       unless params[:q].blank?
         params[:q] = "#{params[:q]} AND "
       end
-      params[:q] << "indicator_u_sstr:#{params[:indicator]}"
+      
+      #convert the range into a set of indicators since indicators are defined as strings and we need exact matches
+      if params[:indicator].include? "TO"
+        range = params[:indicator].split
+          .find_all{|e| e[/\d+/]}
+          .each{|e| e.gsub!(/\[|\]/,'').to_i}
+          
+        indicators = (range[0]..range[range.length-1]).step(1)
+      # otherwise just split the list up
+      else
+        indicators = params[:indicator].split
+      end
+      
+      # then concatenate with the correct prefix and OR the search
+      indicator_string = indicators.each { |e| e.prepend('indicator_u_sstr:') }.join(" OR ")
+      
+      params[:q] << indicator_string
     end
 
     search_params = params_for_backend_search.merge({
